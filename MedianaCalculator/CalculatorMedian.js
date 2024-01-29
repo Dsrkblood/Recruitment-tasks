@@ -47,16 +47,21 @@ function get_median_of_first_week_expenses(expenses) {
 	for (const data in expenses) {
 		const firstDayOfMonth = new Date(`${data}-01`);
 		const dayOfWeek = firstDayOfMonth.getDay();
-		const isSunday = 6 - (6 - dayOfWeek);
+		const toSunday = 7 - dayOfWeek + 1;
 
 		for (const day in expenses[data]) {
 			const checkedDay = new Date(`${data}-${day}`);
 			const monthDay = checkedDay.getDate();
 
-			if (isSunday === 0 && checkedDay.getDay() === 0 && monthDay < 7) {
+			if (dayOfWeek === 0 && checkedDay.getDay() === 0 && monthDay < 7) {
 				arrayMedian.push(...expenses[data][day].food);
 				arrayMedian.push(...expenses[data][day].fuel);
-			} else if (isSunday > 0 && monthDay < 7) {
+			} else if (
+				dayOfWeek !== 0 &&
+				checkedDay.getDate() >= firstDayOfMonth.getDate() &&
+				monthDay <= toSunday
+			) {
+				console.log(day);
 				arrayMedian.push(...expenses[data][day].food);
 				arrayMedian.push(...expenses[data][day].fuel);
 			}
