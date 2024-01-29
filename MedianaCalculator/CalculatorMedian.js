@@ -61,7 +61,6 @@ function get_median_of_first_week_expenses(expenses) {
 				checkedDay.getDate() >= firstDayOfMonth.getDate() &&
 				monthDay <= toSunday
 			) {
-				console.log(day);
 				arrayMedian.push(...expenses[data][day].food);
 				arrayMedian.push(...expenses[data][day].fuel);
 			}
