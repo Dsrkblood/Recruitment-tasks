@@ -27,7 +27,7 @@ function get_median_of_first_week_expenses(expenses) {
 	let counter = 0;
 
 	function calculateMedian(values) {
-		const sortedValues = values.slice().sort((a, b) => a - b);
+		const sortedValues = [...values].sort((a, b) => a - b);
 		const middleIndex = Math.floor(values.length / 2);
 		if (values.length % 2 === 1 && values.length > 0) {
 			return sortedValues[middleIndex];
@@ -40,8 +40,7 @@ function get_median_of_first_week_expenses(expenses) {
 
 	function medianCalculation(arrayMedian) {
 		const medianTotal = calculateMedian(arrayMedian);
-		const total = medianTotal;
-		counter += total;
+		counter += medianTotal;
 	}
 
 	for (const data in expenses) {
